@@ -1,0 +1,25 @@
+# secrets and skore-cli credentials
+.env
+.skore
+
+# competition tables — download from Kaggle, do not commit
+data/*.csv
+
+# skills are installed per machine — do not vendor them
+.bob/
+
+# agent scratch probes
+scratch/
+
+# bytecode
+__pycache__/
+*.pyc
+
+# nested clone of https://github.com/probabl-ai/skills-hackaton
+skills/
+
+# OS / IDE
+.DS_Store
+
+# local git worktrees
+.worktrees/
