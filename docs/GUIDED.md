@@ -1,86 +1,86 @@
-# Guided lab
+# Lab guidé
 
-Work **in Bob** (IDE or CLI) with the lab skills. Every Kaggle file must be produced there, then uploaded with a Skore Hub **EstimatorReport URL** in the Submission Description. See the [competition rules](https://www.kaggle.com/competitions/ibm-probabl-hackaton/rules).
+Travaillez **dans Bob** (IDE ou CLI) avec les skills du lab. Chaque fichier Kaggle doit être produit là, puis uploadé avec une **URL EstimatorReport** Skore Hub dans la Submission Description. Voir les [règles de la compétition](https://www.kaggle.com/competitions/ibm-probabl-hackaton/rules).
 
-Snippets match **installed** libraries: `skore` 0.25.0, `scikit-learn` 1.9.0, `skrub` 0.10.0. Do not invent other symbol names. Put a **new** hub report key for each Kaggle file (`01_dummy`, `02_ridge`, …). Do **not** use the reserved key `eda` for a model.
+Les snippets matchent les librairies **installées** : `skore` 0.25.0, `scikit-learn` 1.9.0, `skrub` 0.10.0. N'inventez pas d'autres noms de symboles. Mettez une **nouvelle** clé de report Hub pour chaque fichier Kaggle (`01_dummy`, `02_ridge`, …). N'utilisez **pas** la clé réservée `eda` pour un modèle.
 
-Join Kaggle and form your team **before** you install Python on your machine.
+Rejoignez Kaggle et formez votre team **avant** d'installer Python sur votre machine.
 
-## 1. Join Kaggle and form a team
+## 1. Rejoindre Kaggle et former une team
 
-**Kaggle** is a website for data-science competitions: you download the data, upload a prediction file, and get a public score on a **leaderboard**. This lab’s private competition lives there. You need a free Kaggle account.
+**Kaggle** est un site de compétitions data-science : vous téléchargez les data, vous uploadez un fichier de prédictions, et vous obtenez un score public sur un **leaderboard**. La compétition privée de ce lab vit là. Il vous faut un compte Kaggle gratuit.
 
-![Example Kaggle leaderboard: teams ranked by score.](figures/kaggle_leaderboard.png)
+![Exemple de leaderboard Kaggle : teams classées par score.](figures/kaggle_leaderboard.png)
 
-*Example leaderboard — teams ranked by score (lower is better here). Yours will look like this after the first Submissions.*
+*Exemple de leaderboard — teams classées par score (plus bas est mieux ici). Le vôtre ressemblera à ça après les premières Submissions.*
 
-Open the competition and accept the rules: [https://www.kaggle.com/t/1d3caaf98f12426cb621b47f2063ab28](https://www.kaggle.com/t/1d3caaf98f12426cb621b47f2063ab28).
+Ouvrez la compétition et acceptez les règles : [https://www.kaggle.com/t/1d3caaf98f12426cb621b47f2063ab28](https://www.kaggle.com/t/1d3caaf98f12426cb621b47f2063ab28).
 
-Then form **one Kaggle team** (maximum four people). Remember the **exact team name**. You will reuse it as the Skore Hub workspace name in step 3.
+Puis formez **une team Kaggle** (maximum quatre personnes). Retenez le **nom exact de la team**. Vous le réutiliserez comme nom de workspace Skore Hub à l'étape 3.
 
 ## 2. Python
 
-You need a working **Python 3.10+** interpreter on your `PATH`. Check:
+Il vous faut un interpréteur **Python 3.10+** qui marche sur votre `PATH`. Vérifiez :
 
 ```bash
 python --version
 ```
 
-If that fails, try `python3 --version`. Use that same command (`python` or `python3`) for the rest of this lab. Install Python from [python.org](https://www.python.org/downloads/) if neither works.
+Si ça échoue, essayez `python3 --version`. Utilisez la même commande (`python` ou `python3`) pour le reste du lab. Installez Python depuis [python.org](https://www.python.org/downloads/) si aucun des deux ne marche.
 
-## 3. Hub account and team workspace
+## 3. Compte Hub et workspace d'équipe
 
-Create (or sign in to) a Skore Hub account on the **custom lab hub**: [https://ibm.skore.probabl.ai](https://ibm.skore.probabl.ai).
+Créez (ou connectez-vous à) un compte Skore Hub sur le **hub custom du lab** : [https://ibm.skore.probabl.ai](https://ibm.skore.probabl.ai).
 
-**One Hub workspace per Kaggle team — not one per person.**
+**Un Hub workspace par team Kaggle — pas un par personne.**
 
-1. **One** teammate creates the workspace.
-2. The workspace **name must match the Kaggle team name** (no `/` in the name; if Hub rejects spaces or punctuation, use the same words with hyphens).
-3. That person **invites the other teammates** into that workspace.
-4. Everyone else **joins the invite**. Do not create a second workspace.
+1. **Un** teammate crée le workspace.
+2. Le **nom du workspace doit matcher le nom de la team Kaggle** (pas de `/` dans le nom ; si Hub refuse les espaces ou la ponctuation, utilisez les mêmes mots avec des tirets).
+3. Cette personne **invite les autres teammates** dans ce workspace.
+4. Tous les autres **rejoignent l'invite**. Ne créez pas un second workspace.
 
-`python scripts/install_skore.py` (next step) expects you to be a member of **exactly one** Hub workspace. Extra personal workspaces break that install.
+`python scripts/install_skore.py` (étape suivante) attend que vous soyez membre d'**exactement un** Hub workspace. Des workspaces perso en trop cassent cet install.
 
-You will use **Bob IDE or Bob CLI** plus **skore** for every Submission - not Cursor, Claude Code, Copilot, ChatGPT, or Kaggle Notebooks.
+Vous utiliserez **Bob IDE ou Bob CLI** plus **skore** pour chaque Submission — pas Cursor, Claude Code, Copilot, ChatGPT, ni Kaggle Notebooks.
 
-## 4. Install skore
+## 4. Installer skore
 
-From the repo root, after you are in the team Hub workspace:
+Depuis la racine du repo, une fois que vous êtes dans le Hub workspace de la team :
 
 ```bash
 python scripts/install_skore.py
 ```
 
-Confirm `.skore` and `.bob/skills/` exist.
+Confirmez que `.skore` et `.bob/skills/` existent.
 
-## 5. Data into `data/`
+## 5. Data dans `data/`
 
-Competition tables are **not** in git (`data/*.csv` is ignored). Download the files from the [competition **Data** tab](https://www.kaggle.com/competitions/ibm-probabl-hackaton/data) and unzip them into a `data/` folder at the repo root.
+Les tables de la compétition ne sont **pas** dans git (`data/*.csv` est ignoré). Téléchargez les fichiers depuis l'[onglet **Data** de la compétition](https://www.kaggle.com/competitions/ibm-probabl-hackaton/data) et dézippez-les dans un dossier `data/` à la racine du repo.
 
-You should see `X_train.csv`, `y_train.csv`, `X_test.csv`, and `sample_submission.csv`. Every teammate still needs these CSVs locally (Hub share does not replace the download).
+Vous devriez voir `X_train.csv`, `y_train.csv`, `X_test.csv`, et `sample_submission.csv`. Chaque teammate a encore besoin de ces CSV en local (le share Hub ne remplace pas le download).
 
-## 6. Explore the data (EDA)
+## 6. Explorer les data (EDA)
 
-**Exploratory data analysis (EDA)** is looking at the tables *before* you pick a model: shape, missingness, `patient_id` groups, what looks like a leak. In Bob this is the **G-EDA** step (`explore-ml-data`). It writes `data/eda.py`, a short narrative `data/eda.md`, and interactive `data/eda_<table>.html` pages.
+**Exploratory data analysis (EDA)** : regarder les tables *avant* de choisir un modèle : shape, missingness, groupes `patient_id`, ce qui ressemble à un leak. Dans Bob, c'est l'étape **G-EDA** (`explore-ml-data`). Elle écrit `data/eda.py`, un court narratif `data/eda.md`, et des pages interactives `data/eda_<table>.html`.
 
-**Only one teammate computes the EDA.** That person chooses **run** in Bob. When it finishes, Bob uploads those files to the team Hub workspace under the reserved key `eda`.
+**Un seul teammate calcule l'EDA.** Cette personne choisit **run** dans Bob. Quand c'est fini, Bob uploade ces fichiers dans le Hub workspace de la team sous la clé réservée `eda`.
 
-Everyone else **must not run a second EDA**. When Bob looks up Hub:
+Tous les autres **ne doivent pas lancer une seconde EDA**. Quand Bob lookup Hub :
 
-- if key `eda` is already there, it **fetches** the files onto their machine;
-- if a teammate is still computing it, choose **wait** — do not start modelling, do not skip. When they have uploaded, say so and Bob fetches.
+- si la clé `eda` est déjà là, il **fetch** les fichiers sur leur machine ;
+- si un teammate est encore en train de la calculer, choisissez **wait** — ne commencez pas le modelling, ne skippez pas. Quand cette personne a uploadé, dites-le et Bob fetch.
 
-Same dataset, same findings. One run is enough; Hub is the shared copy.
+Même dataset, mêmes findings. Un run suffit ; Hub est la copie partagée.
 
-## 7. Dummy mean: a floor
+## 7. Dummy mean : un floor
 
-If you cannot beat predicting the training-set mean, nothing else is working (data load, metric, upload). Start by loading the visits.
+Si vous n'arrivez pas à battre la prédiction de la moyenne du training set, rien d'autre ne marche (data load, métrique, upload). Commencez par charger les visites.
 
-Each **row** is a **visit**. The target is a **true / unbiased OFF** MDS-UPDRS motor score (`y_train.target`). Clinic ON/OFF scores are biased (subjectivity, missing values, levodopa timing).
+Chaque **row** est une **visite**. La target est un score moteur MDS-UPDRS **true / unbiased OFF** (`y_train.target`). Les scores cliniques ON/OFF sont biaisés (subjectivité, valeurs manquantes, timing lévodopa).
 
-- `patient_id`: several visits per patient. The Kaggle holdout is **by patient**.
-- **Missingness**: `on`, `off`, `ledd`, `gene`, intake delays are often missing.
-- **ON / OFF / LEDD / timing**: `on`, `off`, `ledd`, `time_since_intake_on`, `time_since_intake_off`. On train, years since diagnosis is `age - age_at_diagnosis` (test may already have `time_since_diagnosis`).
+- `patient_id` : plusieurs visites par patient. Le holdout Kaggle est **par patient**.
+- **Missingness** : `on`, `off`, `ledd`, `gene`, délais de prise sont souvent manquants.
+- **ON / OFF / LEDD / timing** : `on`, `off`, `ledd`, `time_since_intake_on`, `time_since_intake_off`. Sur le train, les années depuis le diagnostic valent `age - age_at_diagnosis` (le test peut déjà avoir `time_since_diagnosis`).
 
 ```python
 import pandas as pd
@@ -93,11 +93,11 @@ visits = X_train.merge(y_train, on="Index")
 y = visits["target"]
 ```
 
-Use `sample_submission.csv` as the shape template: columns `Index,target`.
+Utilisez `sample_submission.csv` comme template de shape : colonnes `Index,target`.
 
-- **What it is**: Dummy always predicts the same number: the average true OFF in train.
-- **How it works**: it ignores every column. You still pass an `X` so `skore.evaluate` can line up the same rows as `y`.
-- **Why here**: if you cannot beat this floor, the data load, the metric, or the upload is broken - not the model.
+- **C'est quoi** : Dummy prédit toujours le même nombre : la moyenne du true OFF en train.
+- **Comment ça marche** : il ignore toutes les colonnes. Vous passez quand même un `X` pour que `skore.evaluate` aligne les mêmes rows que `y`.
+- **Pourquoi ici** : si vous ne battez pas ce floor, c'est le data load, la métrique, ou l'upload qui est cassé — pas le modèle.
 
 ```python
 from sklearn.dummy import DummyRegressor
@@ -121,9 +121,9 @@ report = evaluate(dummy, X, y)
 report.metrics.rmse()
 ```
 
-`skore.evaluate` is the entry point. With no `splitter=`, it uses default `splitter=0.2` (a random row holdout). That is enough to check the floor; grouped splits come in step 10.
+`skore.evaluate` est le point d'entrée. Sans `splitter=`, il utilise le défaut `splitter=0.2` (un holdout aléatoire sur les rows). Ça suffit pour checker le floor ; les splits groupés arrivent à l'étape 10.
 
-**Project** stores reports. **Hub** is required for a valid Submission (the URL printed after `put`). `name=` is your project inside the hub workspace from `.skore`. Always `load_skore_credentials()` then `login(mode="hub")`:
+**Project** stocke les reports. **Hub** est requis pour une Submission valide (l'URL affichée après `put`). `name=` est votre projet dans le hub workspace lu depuis `.skore`. Toujours `load_skore_credentials()` puis `login(mode="hub")` :
 
 ```python
 from parkinson.hub import load_skore_credentials
@@ -133,18 +133,18 @@ cfg = load_skore_credentials()
 login(mode="hub")
 project = Project(name="ibm-hackaton", mode="hub", workspace=cfg["workspace"])
 project.put("01_dummy", report)
-# The console prints: Consult your report at https://ibm.skore.probabl.ai/…
+# La console affiche : Consult your report at https://ibm.skore.probabl.ai/…
 ```
 
-`Project.get` is by **id** from `project.summarize()`, not by the string key you passed to `put`.
+`Project.get` se fait par **id** depuis `project.summarize()`, pas par la string key passée à `put`.
 
-## 8. A simple linear model
+## 8. Un modèle linéaire simple
 
-Numeric clinical variables (`age`, `on`, `off`, `ledd`, delays) may carry a simple additive signal.
+Les variables cliniques numériques (`age`, `on`, `off`, `ledd`, délais) peuvent porter un signal additif simple.
 
-- **What it is**: Ridge draws a straight line: predicted true OFF ≈ intercept + (a weight × each column).
-- **How it works**: it chooses weights so predictions match `y`, then `alpha` pulls those weights toward zero so one noisy column cannot dominate.
-- **Why here**: a first check that the numbers matter at all. Ridge only eats numbers with no holes, so median-impute first and leave strings like `gene` for later.
+- **C'est quoi** : Ridge trace une droite : true OFF prédit ≈ intercept + (un poids × chaque colonne).
+- **Comment ça marche** : il choisit les poids pour que les prédictions matchent `y`, puis `alpha` tire ces poids vers zéro pour qu'une colonne bruitée ne domine pas.
+- **Pourquoi ici** : un premier check que les nombres comptent vraiment. Ridge ne mange que des nombres sans trous, donc median-impute d'abord et laissez les strings comme `gene` pour plus tard.
 
 ```python
 from sklearn.impute import SimpleImputer
@@ -159,7 +159,7 @@ ridge = make_pipeline(
 report = evaluate(ridge, X, y)
 ```
 
-`make_pipeline(*steps)` stitches transformers then the regressor. Compare dummy vs ridge in one report:
+`make_pipeline(*steps)` enchaîne les transformers puis le regressor. Comparez dummy vs ridge dans un seul report :
 
 ```python
 report = evaluate(
@@ -169,23 +169,23 @@ report = evaluate(
 )
 ```
 
-`put` with a new key. The default row holdout can still leak the same patient into both sides - grouped CV is step 10.
+`put` avec une nouvelle key. Le holdout row par défaut peut encore leak le même patient des deux côtés — le CV groupé est l'étape 10.
 
-## 9. Tweak Ridge and submit on Kaggle
+## 9. Tweaker Ridge et submit sur Kaggle
 
-`Ridge(alpha=…)` is the knob: larger `alpha` shrinks coefficients more. Change it, re-run `evaluate`, keep the one that beats dummy by the most.
+`Ridge(alpha=…)` est le knob : un `alpha` plus grand shrink plus les coefficients. Changez-le, relancez `evaluate`, gardez celui qui bat dummy le plus.
 
 ```python
 ridge = make_pipeline(
     SimpleImputer(strategy="median"),
-    Ridge(alpha=10.0),  # try 0.1, 1.0, 10.0, …
+    Ridge(alpha=10.0),  # essayer 0.1, 1.0, 10.0, …
 )
 report = evaluate(ridge, X, y)
 report.metrics.rmse()
 project.put("02_ridge", report)
 ```
 
-`evaluate` only scores on train. The file you upload is that pipeline **fit on all training visits**, then `predict` on `X_test` (same columns as `X`):
+`evaluate` score seulement sur le train. Le fichier que vous uploadez, c'est ce pipeline **fit sur toutes les visites de train**, puis `predict` sur `X_test` (mêmes colonnes que `X`) :
 
 ```python
 from sklearn.base import clone
@@ -196,24 +196,24 @@ submission["target"] = final.predict(X_test[feature_cols])
 submission.to_csv("submission.csv", index=False)
 ```
 
-Upload `submission.csv` on Kaggle. A Submission is valid only if:
+Uploadez `submission.csv` sur Kaggle. Une Submission n'est valide que si :
 
-1. Code was written and run in **Bob**, evaluation through **skore**.
-2. You `put` this Ridge report; the console shows `https://ibm.skore.probabl.ai/…`.
-3. CSV header is `Index,target`, one row per test visit.
-4. The Kaggle **Submission Description** contains that report URL (otherwise the row is invalid even if Kaggle scored the file).
+1. Le code a été écrit et run dans **Bob**, l'évaluation via **skore**.
+2. Vous `put` ce report Ridge ; la console montre `https://ibm.skore.probabl.ai/…`.
+3. Le header CSV est `Index,target`, une row par visite test.
+4. La **Submission Description** Kaggle contient cette URL de report (sinon la row est invalide même si Kaggle a scoré le fichier).
 
-Later models use the same fit → CSV → URL path.
+Les modèles suivants utilisent le même chemin fit → CSV → URL.
 
-## 10. Evaluate with patient-grouped CV
+## 10. Évaluer avec un CV groupé par patient
 
-The default `splitter=0.2` shuffles **rows**. That is too kind here.
+Le défaut `splitter=0.2` shuffle les **rows**. C'est trop gentil ici.
 
-- **What it is**: GroupKFold is a dress rehearsal of the Kaggle split: a whole patient goes to train or to the held-out fold, never both.
-- **How it works**: it cuts patients into 5 groups. Five times, it trains on 4 groups and scores on the 5th, then you read the average RMSE.
-- **Why here**: the same person has many visits. A random row split is **leakage**: visits from one patient sit on both sides, so the model memorizes that person instead of generalizing, and metric looks better than the Kaggle competition (which holds out entire patients). Grouped CV blocks that leak.
+- **C'est quoi** : GroupKFold est une répétition générale du split Kaggle : un patient entier va en train ou dans le fold held-out, jamais les deux.
+- **Comment ça marche** : il coupe les patients en 5 groupes. Cinq fois, il train sur 4 groupes et score sur le 5ᵉ, puis vous lisez le RMSE moyen.
+- **Pourquoi ici** : la même personne a beaucoup de visites. Un split row aléatoire est du **leakage** : des visites d'un même patient sont des deux côtés, donc le modèle mémorise cette personne au lieu de généraliser, et la métrique a l'air meilleure que la compétition Kaggle (qui holdout des patients entiers). Le CV groupé bloque ce leak.
 
-skore’s sklearn path calls `splitter.split(X, y)` **without** `groups=`, so precompute the index pairs:
+Le path sklearn de skore appelle `splitter.split(X, y)` **sans** `groups=`, donc précalculez les paires d'index :
 
 ```python
 from sklearn.model_selection import GroupKFold
@@ -227,29 +227,29 @@ report = evaluate(
     y,
     splitter=cv_splits,
 )
-report.metrics.summarize()          # table of metrics
-report.metrics.get("rmse")          # or report.metrics.rmse()
+report.metrics.summarize()          # table de métriques
+report.metrics.get("rmse")          # ou report.metrics.rmse()
 ```
 
-- `splitter=` a list of index pairs (or `5`, or a CV splitter) → `CrossValidationReport`
-- several estimators (list or dict) → `ComparisonReport`
+- `splitter=` une liste de paires d'index (ou `5`, ou un CV splitter) → `CrossValidationReport`
+- plusieurs estimators (list ou dict) → `ComparisonReport`
 
-Use `cv_splits` from here on. `put` this report with a new key.
+Utilisez `cv_splits` à partir d'ici. `put` ce report avec une nouvelle key.
 
-skrub DataOps can attach `groups` on the graph - see step 13.
+skrub DataOps peut attacher `groups` sur le graphe — voir l'étape 13.
 
-## 11. HistGradientBoosting: missingness as signal
+## 11. HistGradientBoosting : la missingness comme signal
 
-ON/OFF/LEDD/genetics are often missing; missingness is part of the generative process (see [CONTEXT.md](CONTEXT.md)). Ridge had to *fill* those holes with a median. Here we keep the holes.
+ON/OFF/LEDD/génétique sont souvent manquants ; la missingness fait partie du process génératif (voir [CONTEXT.md](CONTEXT.md)). Ridge devait *remplir* ces trous avec une médiane. Ici on garde les trous.
 
-- **What it is**: a **decision tree** is a flowchart of yes/no questions (`age > 62?`, `on` missing?). Each visit falls down the flowchart into a leaf, and that leaf predicts a number (a typical true OFF for visits that landed there). **Boosting** means we do not stop at one tree: we grow many small trees in a sequence, and each new tree is trained on the *mistakes* of the ones before it. The final prediction is the sum of all those small corrections. **Hist** (histogram) is an implementation trick: each numeric column is first cut into a few buckets (like a histogram), so the model looks at bucket ids instead of every distinct age. That keeps it fast on tens of thousands of visits.
-- **How it works** -
-  - Tree 1 fits a rough sketch of true OFF.
-  - Tree 2 looks at the residuals (true OFF minus what tree 1 predicted) and tries to explain what is still wrong.
-  - Trees 3, 4, … keep nipping at the remaining error. That is gradient boosting, in plain language: keep adding a small expert on the leftover mistakes.
-  - At a split, the algorithm may send **missing** values left or right on purpose. It learns that route from the training data - so “OFF was not measured” can be a signal, not a defect.
-  - `random_state=0` only makes the run repeatable.
-- **Why here**: in this table, a missing OFF often means the visit was ON-only (uncomfortable OFF exams are skipped). That is information about the patient and the protocol, not noise to impute away. Do **not** median-fill NaNs unless you are testing that ablation (does the model get *worse* when you hide the holes?).
+- **C'est quoi** : un **decision tree** est un flowchart de questions oui/non (`age > 62 ?`, `on` manquant ?). Chaque visite descend le flowchart jusqu'à une leaf, et cette leaf prédit un nombre (un true OFF typique pour les visites qui sont tombées là). **Boosting** : on ne s'arrête pas à un arbre : on en fait pousser beaucoup de petits, en séquence, et chaque nouvel arbre est trainé sur les *erreurs* des précédents. La prédiction finale est la somme de toutes ces petites corrections. **Hist** (histogram) est un trick d'implémentation : chaque colonne numérique est d'abord découpée en quelques buckets (comme un histogramme), donc le modèle regarde des ids de buckets au lieu de chaque âge distinct. Ça reste rapide sur des dizaines de milliers de visites.
+- **Comment ça marche** —
+  - L'arbre 1 fit un rough sketch du true OFF.
+  - L'arbre 2 regarde les residuals (true OFF moins ce que l'arbre 1 a prédit) et essaie d'expliquer ce qui est encore faux.
+  - Les arbres 3, 4, … continuent de grignoter l'erreur restante. C'est du gradient boosting, en clair : continuer d'ajouter un petit expert sur les erreurs restantes.
+  - À un split, l'algo peut envoyer les valeurs **manquantes** à gauche ou à droite exprès. Il apprend cette route depuis le training data — donc « OFF n'a pas été mesuré » peut être un signal, pas un défaut.
+  - `random_state=0` rend seulement le run reproductible.
+- **Pourquoi ici** : dans cette table, un OFF manquant veut souvent dire que la visite était ON-only (les examens OFF inconfortables sont skippés). C'est de l'information sur le patient et le protocole, pas du bruit à imputer. Ne **remplissez pas** les NaNs à la médiane sauf si vous testez cette ablation (est-ce que le modèle devient *pire* quand vous cachez les trous ?).
 
 ```python
 from sklearn.ensemble import HistGradientBoostingRegressor
@@ -259,31 +259,31 @@ hgbr = HistGradientBoostingRegressor(random_state=0)
 report = evaluate(hgbr, X, y, splitter=cv_splits)
 ```
 
-Strings are still a problem: by default the model wants numbers or pandas `category` dtypes. `categorical_features="from_dtype"` (the default) treats a `category` column as “pick among a few labels” instead of as a fake number. Convert `cohort` / `gene` with `.astype("category")` if you add them to `X`.
+Les strings restent un problème : par défaut le modèle veut des nombres ou des dtypes pandas `category`. `categorical_features="from_dtype"` (le défaut) traite une colonne `category` comme « choisir parmi quelques labels » au lieu d'un faux nombre. Convertissez `cohort` / `gene` avec `.astype("category")` si vous les ajoutez à `X`.
 
-## 12. skrub `tabular_pipeline`: mixed types without hand-encoding
+## 12. skrub `tabular_pipeline` : types mixtes sans encoding à la main
 
-Ridge and the numeric HGBR above never saw `gene` or `cohort`: those are **strings**. A sklearn regressor cannot multiply `"GBA"` by a weight. Something has to turn text into numbers first. Doing that by hand (a custom encoder per column) is where pipelines usually rot.
+Ridge et le HGBR numérique ci-dessus n'ont jamais vu `gene` ni `cohort` : ce sont des **strings**. Un regressor sklearn ne peut pas multiplier `"GBA"` par un poids. Il faut d'abord transformer le texte en nombres. Le faire à la main (un encoder custom par colonne) est là où les pipelines pourrissent d'habitude.
 
-- **What it is**: `tabular_pipeline("regressor")` is a ready-made two-step recipe from skrub: (1) `TableVectorizer` turns a messy table into a numeric matrix, (2) `HistGradientBoostingRegressor` predicts. You drop ids, pass the rest, and the vectorizer chooses an encoder **per column**.
-- **How it works**: “cardinality” means how many distinct values a column has.
-  - **Low cardinality** (a handful of labels, e.g. `sexM`, maybe `cohort`) → **one-hot**: one new column per label, `1` if that row has it, `0` otherwise. The model sees a switch, not a made-up ranking of labels.
-  - **High cardinality** (many distinct strings, e.g. `gene` if it is messy) → `StringEncoder`: compress the text into a few numeric dimensions instead of hundreds of one-hot columns. You keep signal without exploding the width of `X`.
-  - **Numbers** (`age`, `on`, `ledd`, …) pass through. HGBR can still use their NaNs, as in step 11.
-  - `Index` and `patient_id` are identifiers, not clinical features. If you leave them in, the model can memorize ids - another form of leakage. Drop them (and `target`) before fitting.
-- **Why here**: the interesting PD columns are mixed: numbers with holes *and* categoricals. This step is how you stop throwing `gene` / `cohort` away just because Ridge could not read them.
+- **C'est quoi** : `tabular_pipeline("regressor")` est une recette ready-made en deux étapes de skrub : (1) `TableVectorizer` transforme une table messy en matrice numérique, (2) `HistGradientBoostingRegressor` prédit. Vous droppez les ids, vous passez le reste, et le vectorizer choisit un encoder **par colonne**.
+- **Comment ça marche** : « cardinality » = combien de valeurs distinctes a une colonne.
+  - **Low cardinality** (une poignée de labels, ex. `sexM`, peut-être `cohort`) → **one-hot** : une nouvelle colonne par label, `1` si cette row l'a, `0` sinon. Le modèle voit un switch, pas un ranking inventé des labels.
+  - **High cardinality** (beaucoup de strings distinctes, ex. `gene` si c'est messy) → `StringEncoder` : compresser le texte en quelques dimensions numériques au lieu de des centaines de colonnes one-hot. Vous gardez le signal sans exploser la largeur de `X`.
+  - **Nombres** (`age`, `on`, `ledd`, …) passent. HGBR peut toujours utiliser leurs NaNs, comme à l'étape 11.
+  - `Index` et `patient_id` sont des identifiants, pas des features cliniques. Si vous les laissez, le modèle peut mémoriser les ids — une autre forme de leakage. Droppez-les (et `target`) avant le fit.
+- **Pourquoi ici** : les colonnes PD intéressantes sont mixtes : des nombres avec des trous *et* des catégorielles. Cette étape, c'est comment arrêter de jeter `gene` / `cohort` juste parce que Ridge ne savait pas les lire.
 
 ```python
 from skrub import tabular_pipeline
 from skore import evaluate
 
-# include categoricals; keep Index / patient_id out of features
+# inclure les catégorielles ; garder Index / patient_id hors des features
 X_full = visits.drop(columns=["Index", "patient_id", "target"])
 model = tabular_pipeline("regressor")
 report = evaluate(model, X_full, y, splitter=cv_splits)
 ```
 
-Same vectorizer, your own estimator (if you want to tweak HGBR):
+Même vectorizer, votre propre estimator (si vous voulez tweaker HGBR) :
 
 ```python
 from sklearn.pipeline import make_pipeline
@@ -298,20 +298,20 @@ model = make_pipeline(
 
 
 
-## 13. skrub DataOps: groups baked into the graph
+## 13. skrub DataOps : groups baked dans le graphe
 
-Until now you have juggled separate objects: a DataFrame `visits`, a list `cv_splits`, a pipeline `model`. Easy to fit on the wrong columns or forget `groups` after a copy-paste. **DataOps** is skrub’s way to write the *recipe* once, as a graph, so features, target, and the grouped split live on the same object.
+Jusqu'ici vous jongliez avec des objets séparés : un DataFrame `visits`, une liste `cv_splits`, un pipeline `model`. Facile de fitter sur les mauvaises colonnes ou d'oublier `groups` après un copy-paste. **DataOps** est la façon skrub d'écrire la *recette* une fois, comme un graphe, pour que features, target, et split groupé vivent sur le même objet.
 
-- **What it is**: a DataOp is not the prediction yet. It is a delayed plan: “when you give me a table named `visits`, drop `target`, vectorize, then apply HGBR.” `skore.evaluate` walks that plan and runs the CV that you attached to it.
-- **How it works** -
-  - `skrub.var("visits", visits)` names an **input**. Later, at predict time, you can pass a different table under the same name (`X_test`).
-  - `.skb.mark_as_X(...)` tells skore “this node is the feature table.” `.skb.mark_as_y()` marks the target. Those two marks are how `evaluate` knows what to split.
-  - Passing `cv=GroupKFold(...)` and `split_kwargs={"groups": groups}` **on** `mark_as_X` bakes patient-grouped CV into the graph. You no longer keep a side list `cv_splits` that can go stale.
-  - `.skb.apply(transformer)` / `.skb.apply(estimator, y=...)` appends a step, like `make_pipeline`, but on the graph.
-  - `evaluate(pred)` with **no** `splitter=` reads `cv` / `groups` from the DataOp. That is the point: the split cannot drift away from the data.
-  - `skrub.X(value)` is shorthand for `skrub.var("X", value).skb.mark_as_X()`: no extra `cv` unless you call `mark_as_X` again.
-  - `.skb.make_learner()` **freezes** the graph into a `SkrubLearner`. Then `fit` / `predict` take an **environment dict** (`{"visits": ...}`), because the input was a named `var`, not a naked array. You need that for the Kaggle file: test has no `target`.
-- **Why here**: GroupKFold only works if `groups` is the `patient_id` of the *same* rows as `X`. Putting that on the graph is how you stop the leakage from step 10 from creeping back in through a forgotten argument.
+- **C'est quoi** : un DataOp n'est pas encore la prédiction. C'est un plan delayed : « quand tu me donnes une table nommée `visits`, drop `target`, vectorize, puis applique HGBR. » `skore.evaluate` marche ce plan et run le CV que vous y avez attaché.
+- **Comment ça marche** —
+  - `skrub.var("visits", visits)` nomme un **input**. Plus tard, au predict time, vous pouvez passer une autre table sous le même nom (`X_test`).
+  - `.skb.mark_as_X(...)` dit à skore « ce nœud est la table de features. » `.skb.mark_as_y()` mark la target. Ces deux marks, c'est comment `evaluate` sait quoi splitter.
+  - Passer `cv=GroupKFold(...)` et `split_kwargs={"groups": groups}` **sur** `mark_as_X` bake le CV groupé par patient dans le graphe. Vous n'avez plus à garder une liste à côté `cv_splits` qui peut devenir stale.
+  - `.skb.apply(transformer)` / `.skb.apply(estimator, y=...)` append une step, comme `make_pipeline`, mais sur le graphe.
+  - `evaluate(pred)` **sans** `splitter=` lit `cv` / `groups` depuis le DataOp. C'est le point : le split ne peut pas dériver loin des data.
+  - `skrub.X(value)` est un raccourci pour `skrub.var("X", value).skb.mark_as_X()` : pas de `cv` extra sauf si vous rappelez `mark_as_X`.
+  - `.skb.make_learner()` **freeze** le graphe en `SkrubLearner`. Ensuite `fit` / `predict` prennent un **environment dict** (`{"visits": ...}`), parce que l'input était un `var` nommé, pas un array nu. Vous en avez besoin pour le fichier Kaggle : le test n'a pas de `target`.
+- **Pourquoi ici** : GroupKFold ne marche que si `groups` est le `patient_id` des *mêmes* rows que `X`. Le mettre sur le graphe, c'est comment empêcher le leakage de l'étape 10 de revenir par un argument oublié.
 
 ```python
 import skrub
@@ -331,15 +331,15 @@ pred = X_op.skb.apply(skrub.TableVectorizer()).skb.apply(
     y=y_op,
 )
 
-# evaluate reads cv / groups from the DataOp when splitter is omitted
+# evaluate lit cv / groups depuis le DataOp quand splitter est omis
 report = evaluate(pred)
 ```
 
 
 
-## 14. Fit the chosen model and submit again
+## 14. Fitter le modèle choisi et submit à nouveau
 
-Grouped CV (steps 10–13) tells you which idea is better. Submit it the same way as Ridge (step 9): `put` a **new** hub report, fit on **all** training visits, `predict` on `X_test`, upload the CSV with that URL in the Description.
+Le CV groupé (étapes 10–13) vous dit quelle idée est meilleure. Submittez-la comme Ridge (étape 9) : `put` un **nouveau** report hub, fit sur **toutes** les visites de train, `predict` sur `X_test`, uploadez le CSV avec cette URL dans la Description.
 
 ```python
 from sklearn.base import clone
@@ -350,7 +350,7 @@ submission["target"] = final.predict(X_test.drop(columns=["Index", "patient_id"]
 submission.to_csv("submission.csv", index=False)
 ```
 
-Align test columns with whatever you trained on (same drops, same dtypes). For a DataOp / `SkrubLearner`:
+Alignez les colonnes test avec ce sur quoi vous avez trainé (mêmes drops, mêmes dtypes). Pour un DataOp / `SkrubLearner` :
 
 ```python
 learner = pred.skb.make_learner()
@@ -358,4 +358,4 @@ learner.fit({"visits": visits})
 pred_test = learner.predict({"visits": X_test})
 ```
 
-Next: [CONTEXT.md](CONTEXT.md) for timing / missingness / progression, the Kaggle Description page for files and metric.
+Ensuite : [CONTEXT.md](CONTEXT.md) pour timing / missingness / progression, la page Description Kaggle pour les fichiers et la métrique.

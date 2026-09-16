@@ -1,12 +1,12 @@
-# Parkinson's Disease: Predicting and Correcting Bias in Motor Score Evaluation
+# Maladie de Parkinson : prédire et corriger le biais d'évaluation du score moteur
 
-Competitive regression: for each visit, predict the unbiased (“true”) OFF MDS-UPDRS motor score. Minimize RMSE on the unlabeled test set.
+Régression compétitive : pour chaque visite, prédire le score moteur MDS-UPDRS OFF non biaisé (« true OFF »). Minimiser le RMSE sur le test set non labellisé.
 
 ## Documents
 
-- [GUIDED.md](docs/GUIDED.md) - walkthrough: join Kaggle and form a team first, then setup, shared Exploratory Data Analysis (EDA), models, and Kaggle upload
-- Kaggle competition: [ibm-probabl-hackaton](https://www.kaggle.com/competitions/ibm-probabl-hackaton/) (private)
-- [CONTEXT.md](docs/CONTEXT.md) - scientific background, goals, and modelling pitfalls for the Parkinson's dataset
-eligibility, and what makes a Submission valid
+- [GUIDED.md](docs/GUIDED.md) — walkthrough : d'abord rejoindre Kaggle et former une team, puis setup, Exploratory Data Analysis (EDA) partagée, modèles, et upload Kaggle
+- Compétition Kaggle : [ibm-probabl-hackaton](https://www.kaggle.com/competitions/ibm-probabl-hackaton/) (privée)
+- [CONTEXT.md](docs/CONTEXT.md) — background scientifique, objectifs, et pièges de modelling pour le dataset Parkinson
+- [Règles de la compétition](https://www.kaggle.com/competitions/ibm-probabl-hackaton/rules) — éligibilité et ce qui rend une Submission valide
 
-Every Kaggle upload must put a Skore Hub EstimatorReport URL (`https://ibm.skore.probabl.ai/…`) in the Submission Description. See the [competition rules](https://www.kaggle.com/competitions/ibm-probabl-hackaton/rules).
+Chaque upload Kaggle doit mettre une URL Skore Hub EstimatorReport (`https://ibm.skore.probabl.ai/…`) dans la Submission Description. Voir les [règles de la compétition](https://www.kaggle.com/competitions/ibm-probabl-hackaton/rules).
